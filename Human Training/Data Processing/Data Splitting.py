@@ -16,21 +16,20 @@ def split_and_insert_empty_rows(input_file, chunk_size=16):
 
         chunk = []
         with tqdm(total=total_rows, desc="Processing Rows", unit="row") as pbar:
-            for row_number, row in enumerate(reader, start=1):
+            for row in reader:
                 chunk.append(row)
                 pbar.update(1)  # Update the progress bar
                 
-                if row_number % chunk_size == 0:
+                # When the chunk reaches the specified size, write it to the output file
+                if len(chunk) == chunk_size:
                     writer.writerows(chunk)
                     writer.writerow([])  # Insert empty row
                     chunk = []
 
-            # Handle the last chunk if it has exactly chunk_size rows
-            if chunk and len(chunk) == chunk_size:
-                writer.writerows(chunk)
-                writer.writerow([])  # Insert empty row if last chunk is full
-            elif chunk:  # If the last chunk is not full, write it without an empty row
-                writer.writerows(chunk)
+            # Handle the last chunk
+            if chunk:  # If there's any remaining rows
+                writer.writerows(chunk)  # Write the remaining rows
+                # Do not add an empty row after the last chunk
 
 # Example usage
 input_file = "R:\\OHG\\Cardiac_Respiratory_Phantom\\Blood Pressure Processing\\Training\\Human Training\\Data Management\\HugoHR.CSV"

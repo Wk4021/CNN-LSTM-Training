@@ -1,0 +1,21 @@
+PS R:\OHG\Cardiac_Respiratory_Phantom\Blood Pressure Processing> & C:/Users/winsonk/.conda/envs/tf-gpu/python.exe "r:/OHG/Cardiac_Respiratory_Phantom/Blood Pressure Processing/Training/Training Model/TrainingProcessedRL.py"
+X_train shape: (343500, 1030), y_train shape: (343500, 1)
+X_val shape: (75859, 1030), y_val shape: (75859, 1)
+X_test shape: (75859, 1030), y_test shape: (75859, 1)
+X_train shape: (343500, 1030), y_train shape: (343500, 1)
+X_val shape: (75859, 1030), y_val shape: (75859, 1)
+X_test shape: (75859, 1030), y_test shape: (75859, 1)
+2024-10-23 12:47:41.491079: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-10-23 12:47:42.180880: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1510] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21632 MB memory:  -> device: 0, name: NVIDIA RTX A5000, pci bus id: 0000:3e:00.0, compute capability: 8.6
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "C:\Users\winsonk\.conda\envs\tf-gpu\lib\threading.py", line 980, in _bootstrap_inner
+    self.run()
+  File "C:\Users\winsonk\.conda\envs\tf-gpu\lib\threading.py", line 917, in run
+    self._target(*self._args, **self._kwargs)
+  File "r:\OHG\Cardiac_Respiratory_Phantom\Blood Pressure Processing\Training\Training Model\TrainingProcessedRL.py", line 422, in train_dqn
+    self.display_network_architecture()
+  File "r:\OHG\Cardiac_Respiratory_Phantom\Blood Pressure Processing\Training\Training Model\TrainingProcessedRL.py", line 294, in display_network_architecture
+    image = image.resize((800, 300), Image.ANTIALIAS)
+AttributeError: module 'PIL.Image' has no attribute 'ANTIALIAS'

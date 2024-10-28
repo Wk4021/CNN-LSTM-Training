@@ -1,0 +1,31 @@
+For your use case, where you want to predict heart rate (BPM), respiratory rate (RR), and pressure (PSI) based on only the first few data points from your radar data, you might consider a few alternatives to LSTM. Since you’re aiming for quick predictions in real-time, here are some options:
+
+### 1. **Regression Models**
+   - **Linear Regression**: If the relationships are linear, this is a simple and fast option.
+   - **Ridge/Lasso Regression**: These are regularized versions of linear regression that can help with overfitting.
+
+### 2. **Tree-Based Models**
+   - **Random Forests**: Good for capturing non-linear relationships, relatively quick to train and predict.
+   - **Gradient Boosting Machines (e.g., XGBoost, LightGBM)**: These can be very effective and fast, particularly if tuned well.
+
+### 3. **Convolutional Neural Networks (CNNs)**
+   - If your radar data can be structured in a way similar to time-series, CNNs can capture local patterns effectively. You could use a 1D CNN that operates on the first few data points.
+
+### 4. **Simple Feedforward Neural Networks**
+   - A simple neural network can be designed to take the first 50 points as input and output the desired values. This could be faster than LSTM since it doesn’t have to maintain state over time.
+
+### 5. **Multi-Layer Perceptron (MLP)**
+   - MLPs can work well if your input features are pre-processed correctly, and they can be trained to output your desired predictions in real-time.
+
+### 6. **Feature Engineering**
+   - Before applying any model, consider deriving features from your radar data that summarize the first few points effectively. This might include statistical measures like mean, variance, or specific frequency components.
+
+### Considerations
+- **Latency**: Since you're interested in real-time predictions, ensure that the model's inference time meets your needs.
+- **Training Time**: Some models, like deep learning models, might require more training time but can be efficient during inference.
+- **Data Quality and Volume**: Ensure you have enough quality data for training, especially if you switch to a more complex model.
+
+### Recommendation
+Start with tree-based models or a simple feedforward neural network, as they can balance speed and accuracy. You can also explore feature engineering to maximize the predictive power of the first 50 points. If you find the results are lacking, you can gradually incorporate more complex architectures like CNNs or MLPs.
+
+2024-10-02 13:21:23: An error occurred during training: 'TrainingGUI' object has no attribute 'update_elapsed_time'Failed copying input tensor from /job:localhost/replica:0/task:0/device:CPU:0 to /job:localhost/replica:0/task:0/device:GPU:0 in order to run _EagerConst: Dst tensor is not initialized.

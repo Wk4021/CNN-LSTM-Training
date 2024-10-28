@@ -1,0 +1,30 @@
+import csv
+from tqdm import tqdm  # Importing the tqdm library for progress bar
+
+# File paths
+input_file = 'data.csv'
+output_file = 'preprocessed_data.csv'
+
+# Function to preprocess radar data as sequences
+def preprocess_radar_data(radar_string):
+    # Treat each character as part of the sequence
+    sequence = list(radar_string.strip())
+    return sequence
+
+# Read the original data, create a new preprocessed file, and show progress
+with open(input_file, 'r') as csvfile, open(output_file, 'w', newline='') as newfile:
+    reader = list(csv.reader(csvfile))  # Read all rows
+    writer = csv.writer(newfile)
+    
+    # Use tqdm to wrap the iterator for the progress bar
+    for row in tqdm(reader, desc="Processing radar data", unit="row"):
+        radar_data = row[0]  # The 2060-character radar data
+        labels = row[1]      # The labels (BPM, RR, PSI)
+        
+        # Preprocess radar data as sequence
+        preprocessed_data = preprocess_radar_data(radar_data)
+        
+        # Write preprocessed sequence and labels into the new CSV file
+        writer.writerow(preprocessed_data + [labels])
+
+print("Preprocessing complete! Data saved to preprocessed_data.csv")

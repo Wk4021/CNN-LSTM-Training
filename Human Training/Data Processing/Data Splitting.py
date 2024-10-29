@@ -32,5 +32,5 @@ def split_and_insert_empty_rows(input_file, chunk_size=16):
                 # Do not add an empty row after the last chunk
 
 # Example usage
-input_file = "R:\\OHG\\Cardiac_Respiratory_Phantom\\Blood Pressure Processing\\Training\\Human Training\\Data Management\\HugoHR.CSV"
+input_file = "R:\\OHG\\Cardiac_Respiratory_Phantom\\Blood Pressure Processing\\Training\\Human Training\\Data Management\\cleaned_data_HR.CSV"
 split_and_insert_empty_rows(input_file, chunk_size=16)

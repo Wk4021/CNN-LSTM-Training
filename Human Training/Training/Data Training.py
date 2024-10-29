@@ -52,8 +52,10 @@ def create_model(input_shape):
     return model
 
 # Main execution
-file_path = 'path/to/your/split_data.csv'
-data = load_data(file_path)
+input_file_path = r'R:\OHG\Cardiac_Respiratory_Phantom\Blood Pressure Processing\Training\Human Training\Data Management\split_data.csv'
+output_model_path = r'R:\OHG\Cardiac_Respiratory_Phantom\Blood Pressure Processing\Training\Human Training\Human Models\cnn_lstm_heart_rate_model.h5'
+
+data = load_data(input_file_path)
 chunks = create_chunks(data)
 X, y = prepare_data(chunks)
 
@@ -68,8 +70,8 @@ X = X.reshape(X.shape[0], X.shape[1], X.shape[2])
 model = create_model(X.shape[1:])
 model.fit(X, y, epochs=50, batch_size=32)
 
-# Save the model
-model.save('cnn_lstm_heart_rate_model.h5')
+# Save the model (architecture + weights)
+model.save(output_model_path)
 
 # Function for live prediction
 def predict_live(model, new_data):
